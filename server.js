@@ -18,31 +18,15 @@ async function main() {
   console.log('db connected')
 }
 
+app.get('/', (req, res)=> {
+    res.json({message: 'This is home page'})
+})
+
 app.use('/get', getUserRoutes)
 app.use('/post', createUserRoutes)
 
 
-// app.post('/post', async (req, res)=> {
-//     const {name, email, phone, age} = req.body;
 
-//     if(!(name || email, phone, age)){
-//         res.json({message: 'All fields are required...'})
-//     }
-
-//     const result = await User.create({
-//         name,
-//         email,
-//         phone,
-//         age
-//     })
-
-//     console.log(('result', result));
-
-//     res.json({message: 'success'})
-
-//     result.save()
-
-// })
 
 
 
