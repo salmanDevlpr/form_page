@@ -6,6 +6,6 @@ router.get('/:appointmetDate', getAllUser);
 
 router.get('/:id', getUserById)
 
-router.post('/', createUser)
+router.post('/checkAppointment', createUser)
 
 module.exports = router;
