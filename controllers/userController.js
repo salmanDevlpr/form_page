@@ -51,9 +51,9 @@ const createUser = async (req, res) => {
         }
     })
 
-    if(!(name || email || phone)){
-        res.json({message: 'All fields are required..'})
-    }
+    // if(!(name || email || phone)){
+    //     res.json({message: 'All fields are required..'})
+    // }
 
     const result = await SendMail.create({
         name,
