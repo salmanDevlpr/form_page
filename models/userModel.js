@@ -17,6 +17,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         reqired: true
     },
+    appointmentDate: {
+        type: Date,
+        reqired: true
+    },
+    appointmentTime: {
+        type: String,
+        reqired: true
+    },
     
 },{
     timestamps: true

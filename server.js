@@ -2,11 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const User = require('./models/userModel')
 require('dotenv').config()
+const cors = require('cors')
 const getUserRoutes = require('./routes/userRoutes')
 const createUserRoutes = require('./routes/userRoutes')
 
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(cors())
 const PORT = 8000;
 
 
