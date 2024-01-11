@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const User = require('./models/userModel')
 require('dotenv').config()
 const cors = require('cors')
-const getUserRoutes = require('./routes/userRoutes')
-const createUserRoutes = require('./routes/userRoutes')
+const UserRoute = require('./routes/userRoutes')
 
 const app = express();
 app.use(express.json());
@@ -20,12 +19,11 @@ async function main() {
   console.log('db connected')
 }
 
-app.get('/', (req, res)=> {
+app.get('/health', (req, res)=> {
     res.json({message: 'This is home page'})
 })
 
-app.use('/get', getUserRoutes)
-app.use('/post', createUserRoutes)
+app.use('/', UserRoute)
 
 
 
