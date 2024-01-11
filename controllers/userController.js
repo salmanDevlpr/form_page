@@ -1,17 +1,14 @@
 const nodemailer = require('nodemailer');
 const User = require('../models/userModel');
+const SendMail = require('../models/sendMailModel');
 
 
 const getAllUser = async (req, res) => {
     try {
         const appdate = req.params.appointmetDate;
-        console.log('appdate', appdate);
         const rawDate = new Date(appdate);
         const appointmentDate = rawDate.toISOString();
-        console.log('appointmentDate', appointmentDate);
         const allUserData = await User.find({ appointmentDate }, 'appointmentTime');
-        // const allUserData = await User.find();
-        console.log('alluser', allUserData);
         res.send(allUserData)
     } catch (error) {
      console.log('errror', error);
@@ -30,7 +27,7 @@ const getUserById = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-    const {name, email, phone, age, appointmentDate, appointmentTime} = req.body;
+    const {name, email, phone} = req.body;
     const mailTransporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -45,7 +42,6 @@ const createUser = async (req, res) => {
         subject: "testing our nodemailer",
         text: "testing out second sender"
     }
-    console.log('email', email);
 
     mailTransporter.sendMail(details, (err, info)=> {
         if(err){
@@ -55,17 +51,14 @@ const createUser = async (req, res) => {
         }
     })
 
-    if(!(name || email, phone, age, appointmentDate, appointmentTime)){
+    if(!(name || email || phone)){
         res.json({message: 'All fields are required..'})
     }
 
-    const result = await User.create({
+    const result = await SendMail.create({
         name,
         email,
         phone,
-        age,
-        appointmentDate,
-        appointmentTime
     })
 
     res.json({message: 'success'})
