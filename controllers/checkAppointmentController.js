@@ -1,5 +1,4 @@
-
-const User = require('../models/userModel');
+const User = require('../models/checkAppointmentModel');
 
 
 const getAllUser = async (req, res) => {
@@ -25,10 +24,32 @@ const getUserById = async (req, res) => {
     return res.json(user)
 }
 
+const createAppointment = async (req, res) => {
+    const {name, email, phone, age, appointmentDate, appointmentTime} = req.body;
+
+    if(!(name || email || phone || age || appointmentDate || appointmentTime)){
+        res.json({message: 'All fields are required..'})
+    }
+
+    const result = await User.create({
+        name, 
+        email,
+        phone,
+        age,
+        appointmentDate,
+        appointmentTime,
+    })
+
+    res.json({message: 'success'})
+
+    result.save()
+}
+
 
 
 
 module.exports = {
     getAllUser,
     getUserById,
+    createAppointment
 }

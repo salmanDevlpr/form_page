@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = new mongoose.Schema({
+const checkAppointmentSchema = new mongoose.Schema({
     name: {
         type: String,
         reqired: true
@@ -30,5 +30,5 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const User = mongoose.model('user', userSchema);
+const User = mongoose.model('user', checkAppointmentSchema);
 module.exports = User;

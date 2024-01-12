@@ -2,7 +2,7 @@ const nodemailer = require('nodemailer');
 const SendMail = require('../models/sendMailModel');
 
 
-const createUser = async (req, res) => {
+const sendMailToUser = async (req, res) => {
     const {name, email, phone} = req.body;
     const mailTransporter = nodemailer.createTransport({
         service: "gmail",
@@ -43,5 +43,5 @@ const createUser = async (req, res) => {
 }
 
 module.exports = {
-    createUser
+    sendMailToUser
 }
