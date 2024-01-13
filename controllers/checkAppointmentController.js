@@ -27,6 +27,15 @@ const getUserById = async (req, res) => {
 const createAppointment = async (req, res) => {
     const {name, email, phone, age, appointmentDate, appointmentTime} = req.body;
 
+    const user = await User.findOne({email})
+
+    if(user){
+        return res.status(409).json({
+            message: "User are already exists",
+            success: false,
+        })
+    }
+
     if(!(name || email || phone || age || appointmentDate || appointmentTime)){
         res.json({message: 'All fields are required..'})
     }
