@@ -1,6 +1,5 @@
 const User = require('../models/checkAppointmentModel');
 
-
 const getAllUser = async (req, res) => {
     try {
         const appdate = req.params.appointmetDate;
@@ -12,6 +11,9 @@ const getAllUser = async (req, res) => {
      console.log('errror', error);
      res.status(500).json({message: error.message})   
     }
+
+    // const allUserData = await User.find();
+    // res.send(allUserData)
 }
 
 
@@ -30,7 +32,7 @@ const createAppointment = async (req, res) => {
     const user = await User.findOne({email})
 
     if(user){
-        return res.status(409).json({
+        return res.status(200).json({
             message: "User are already exists",
             success: false,
         })
@@ -60,5 +62,5 @@ const createAppointment = async (req, res) => {
 module.exports = {
     getAllUser,
     getUserById,
-    createAppointment
+    createAppointment,
 }
